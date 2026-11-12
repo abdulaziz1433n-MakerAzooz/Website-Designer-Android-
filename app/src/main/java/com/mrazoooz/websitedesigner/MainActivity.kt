@@ -114,7 +114,7 @@ private object WebsiteBuilder {
         val dark = listOf("داكن", "مظلم", "أسود", "dark").any { d.contains(it) }
         val glass = listOf("زجاج", "شفاف", "glass").any { d.contains(it) }
         val primary = when { green -> "#16865B"; purple -> "#7654C8"; orange -> "#E87932"; red -> "#D94B55"; else -> "#536DFE" }
-        val bg = if (dark) "#111827" else "#F3F5FA"\n        val radius = if (rounded) "26px" else "17px"\n        val shadowStyle = if (shadow) "0 14px 35px rgba(0,0,0,.16)" else "0 5px 18px rgba(20,30,50,.07)"\n        val pageBackground = if (gradient) "linear-gradient(135deg,$bg,${if (dark) "#26344D" else "#E5EAFE"})" else bg
+        val bg = if (dark) "#111827" else "#F3F5FA"\n        val radius = if (rounded) "26px" else "17px"\n        val shadowStyle = if (shadow) "0 14px 35px rgba(0,0,0,.16)" else "0 5px 18px rgba(20,30,50,.07)"\n        val pageBackground = if (gradient) "linear-gradient(135deg,$bg,\${if (dark) "#26344D" else "#E5EAFE"})" else bg
         val card = if (dark) "#202B3D" else "#FFFFFF"
         val text = if (dark) "#F8FAFC" else "#172033"
         val muted = if (dark) "#B8C2D3" else "#667085"
@@ -141,8 +141,8 @@ private object WebsiteBuilder {
         val glassCss = if (glass) "backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.22);" else ""
         val safeTitle = title.replace("<", "").replace(">", "")
         return """<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<style>*{box-sizing:border-box}body{margin:0;padding:22px 14px;background:$bg;color:$text;font-family:Arial,sans-serif}
-header{text-align:center;padding:22px 12px;border-radius:20px;background:$card;$glassCss}h1{font-size:25px;margin:0 0 9px}
+<style>*{box-sizing:border-box}body{margin:0;padding:22px 14px;background:$pageBackground;color:$text;font-family:Arial,sans-serif}
+header{text-align:center;padding:22px 12px;border-radius:$radius;background:$card;$glassCss;box-shadow:$shadowStyle}h1{font-size:25px;margin:0 0 9px}
 p{line-height:1.8;color:$muted;font-size:14px}.main-btn{border:0;border-radius:12px;padding:13px 22px;background:$primary;color:white;font-weight:bold;font-size:14px;cursor:pointer;width:100%;margin-top:10px}
 .feature{background:$card;$glassCss;box-shadow:$shadowStyle;margin-top:14px;padding:18px;border-radius:$radius}.feature h3{margin:0 0 8px;color:$text}
 .feature input{width:100%;padding:12px;margin-top:9px;border:1px solid #cbd5e1;border-radius:10px;font-size:14px}
