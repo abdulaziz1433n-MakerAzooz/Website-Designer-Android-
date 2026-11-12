@@ -41,14 +41,14 @@ fun WebsiteDesignerScreen() {
     var design by remember { mutableStateOf("") }
     var interaction by remember { mutableStateOf("") }
     val html = remember(feature, design, interaction) {
-        WebsiteBuilder.build(feature, design, interaction)
+        WebsiteAIEngine.build(feature, design, interaction)
     }
     MaterialTheme(colorScheme = lightColorScheme(primary = Accent, background = Page)) {
         Scaffold(topBar = {
             TopAppBar(title = {
                 Column {
                     Text("مصمم المواقع الذكي", fontWeight = FontWeight.Bold, color = Ink)
-                    Text("أنشئ موقعك بالوصف — بدون API", fontSize = 11.sp, color = Color.Gray)
+                    Text("محرك تصميم مواقع تجريبي مكتوب بـ Kotlin", fontSize = 11.sp, color = Color.Gray)
                 }
             }, colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White))
         }, containerColor = Page) { padding ->
@@ -70,7 +70,7 @@ fun WebsiteDesignerScreen() {
                 OutlinedButton(onClick = { feature = ""; design = ""; interaction = "" }, modifier = Modifier.fillMaxWidth()) {
                     Text("إعادة ضبط الأوصاف")
                 }
-                Text("يعمل هذا الإصدار محلياً بقواعد جاهزة، ويفهم أوصافاً شائعة مثل الأزرار والأقسام والألوان والرسائل، وليس محادثة ذكاء اصطناعي عامة.",
+                Text("يستخدم هذا الإصدار شبكة عصبية صغيرة مدرّبة محلياً مع مولّد HTML/CSS/JavaScript بقوالب قابلة للتطوير؛ قدراته تجريبية وليست نموذجاً لغوياً عاماً.",
                     color = Color.Gray, fontSize = 11.sp, textAlign = TextAlign.Center)
             }
         }
