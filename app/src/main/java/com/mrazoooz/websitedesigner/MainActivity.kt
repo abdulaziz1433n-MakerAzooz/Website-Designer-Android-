@@ -108,11 +108,11 @@ private object WebsiteBuilder {
     fun build(feature: String, design: String, interaction: String): String {
         val f = feature.lowercase()
         val d = design.lowercase()
-        val i = interaction.lowercase()
+        val i = interaction.lowercase()\n        if (feature.isBlank() && design.isBlank() && interaction.isBlank()) return ""
         val green = listOf("أخضر", "خضراء", "green").any { d.contains(it) }
         val purple = listOf("بنفسجي", "بنفسجية", "purple").any { d.contains(it) }
         val dark = listOf("داكن", "مظلم", "أسود", "dark").any { d.contains(it) }
-        val glass = listOf("زجاج", "شفاف", "glass").any { d.contains(it) }
+        val glass = listOf("زجاج", "شفاف", "glass", "frosted").any { d.contains(it) }\n        val gradient = listOf("متدرج", "تدرج", "gradient").any { d.contains(it) }\n        val rounded = listOf("دائري", "دائرية", "مستدير", "حواف ناعمة", "rounded").any { d.contains(it) }\n        val shadow = listOf("ظل", "ظلال", "shadow", "بارز").any { d.contains(it) }\n        val orange = listOf("برتقالي", "برتقالية", "orange").any { d.contains(it) }\n        val red = listOf("أحمر", "حمراء", "red").any { d.contains(it) }
         val primary = when { green -> "#16865B"; purple -> "#7654C8"; orange -> "#E87932"; red -> "#D94B55"; else -> "#536DFE" }
         val bg = if (dark) "#111827" else "#F3F5FA"\n        val radius = if (rounded) "26px" else "17px"\n        val shadowStyle = if (shadow) "0 14px 35px rgba(0,0,0,.16)" else "0 5px 18px rgba(20,30,50,.07)"\n        val pageBackground = if (gradient) "linear-gradient(135deg,$bg,\${if (dark) "#26344D" else "#E5EAFE"})" else bg
         val card = if (dark) "#202B3D" else "#FFFFFF"
@@ -131,7 +131,7 @@ private object WebsiteBuilder {
             listOf("إخفاء", "اخف", "hide").any { i.contains(it) } -> "document.querySelector('#extra').style.display='none';"
             else -> "document.querySelector('#status').textContent='تم الضغط على الزر بنجاح!';"
         }
-        val extras = buildString {
+        val buttonHtml = if (i.isNotBlank()) "<button class=\\"main-btn\\" onclick=\\"$action\\">$buttonText</button>" else ""\n        val extras = buildString {
             if (hasLogin) append("<div class=\"feature\"><h3>تسجيل الدخول</h3><input placeholder=\"البريد الإلكتروني\"><input placeholder=\"كلمة المرور\" type=\"password\"><button class=\"main-btn\" onclick=\"alert('هذه معاينة لنموذج الدخول')\">دخول</button></div>")
             if (hasPricing) append("<div class=\"feature\"><h3>الأسعار</h3><p>الخطة الأساسية — مجاناً</p><p>الخطة المتقدمة — قريباً</p></div>")
             if (hasContact) append("<div class=\"feature\"><h3>تواصل معنا</h3><p>يسعدنا استقبال رسالتك</p><input placeholder=\"اكتب رسالتك\"><button class=\"main-btn\" onclick=\"alert('تم إرسال الرسالة التجريبية')\">إرسال</button></div>")
