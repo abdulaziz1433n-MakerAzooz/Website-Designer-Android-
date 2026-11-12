@@ -123,7 +123,7 @@ private object WebsiteBuilder {
         val bg = if (dark) "#111827" else "#F3F5FA"
         val radius = if (rounded) "26px" else "17px"
         val shadowStyle = if (shadow) "0 14px 35px rgba(0,0,0,.16)" else "0 5px 18px rgba(20,30,50,.07)"
-        val pageBackground = if (gradient) "linear-gradient(135deg,$bg,\${if (dark) "#26344D" else "#E5EAFE"})" else bg
+        val pageBackground = if (gradient) "linear-gradient(135deg,$bg,#E5EAFE)" else bg
         val card = if (dark) "#202B3D" else "#FFFFFF"
         val text = if (dark) "#F8FAFC" else "#172033"
         val muted = if (dark) "#B8C2D3" else "#667085"
