@@ -140,14 +140,14 @@ private object WebsiteBuilder {
             listOf("إخفاء", "اخف", "hide").any { i.contains(it) } -> "document.querySelector('#extra').style.display='none';"
             else -> "document.querySelector('#status').textContent='تم الضغط على الزر بنجاح!';"
         }
-        val buttonHtml = if (i.isNotBlank()) "<button class=\\"main-btn\\" onclick=\\"$action\\">$buttonText</button>" else ""
+        val buttonHtml = if (i.isNotBlank()) "<button class=\"main-btn\" onclick=\"$action\">$buttonText</button>" else ""
         val extras = buildString {
             if (hasLogin) append("<div class=\"feature\"><h3>تسجيل الدخول</h3><input placeholder=\"البريد الإلكتروني\"><input placeholder=\"كلمة المرور\" type=\"password\"><button class=\"main-btn\" onclick=\"alert('هذه معاينة لنموذج الدخول')\">دخول</button></div>")
             if (hasPricing) append("<div class=\"feature\"><h3>الأسعار</h3><p>الخطة الأساسية — مجاناً</p><p>الخطة المتقدمة — قريباً</p></div>")
             if (hasContact) append("<div class=\"feature\"><h3>تواصل معنا</h3><p>يسعدنا استقبال رسالتك</p><input placeholder=\"اكتب رسالتك\"><button class=\"main-btn\" onclick=\"alert('تم إرسال الرسالة التجريبية')\">إرسال</button></div>")
             if (hasAbout) append("<div class=\"feature\"><h3>من نحن</h3><p>نقدم تجربة بسيطة وسهلة الاستخدام.</p></div>")
             if (hasImage) append("<div class=\"feature image-placeholder\">مساحة الصورة الرئيسية</div>")
-            if (!hasLogin && !hasPricing && !hasContact && !hasAbout && !hasImage && f.isNotBlank()) append("<div class=\\"feature\\"><h3>" + feature.take(70).replace("<", "").replace(">", "") + "</h3><p>تمت إضافة العنصر حسب وصفك.</p></div>")
+            if (!hasLogin && !hasPricing && !hasContact && !hasAbout && !hasImage && f.isNotBlank()) append("<div class=\"feature\"><h3>" + feature.take(70).replace("<", "").replace(">", "") + "</h3><p>تمت إضافة العنصر حسب وصفك.</p></div>")
         }
         val glassCss = if (glass) "backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.22);" else ""
         val safeTitle = title.replace("<", "").replace(">", "")
